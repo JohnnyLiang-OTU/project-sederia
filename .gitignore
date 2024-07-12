@@ -1,0 +1,28 @@
+# Virtual environment
+env/
+venv/
+
+# Django specific
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+base/static/images
+
+# Ignore all settings.py files
+**/settings.py
+
+# Secret settings
+.env
+config/settings/secret.py
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE and editor specific
+.vscode/
+.idea/
+.sublime-project
+.sublime-workspace
