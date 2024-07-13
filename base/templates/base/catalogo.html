@@ -1,8 +1,27 @@
 {% extends 'main.html' %}
 {% block title %}Catalogo{% endblock title %}
-
 {% block content %}
-<div class="catalogo">
-    This is the catalogo content
+<div id="content">
+    <h1 class="title">Catalogo</h1>
+    <div class="container">
+        {% for product in product_query %}
+            <div class="card">
+                <div class="card_image">
+                    {% if product.image %}
+                        <img alt="Render Problem" src="{{ product.image.url }}">
+                    {% else %}
+                        <img alt="default_image">
+                    {% endif %}
+                </div>
+                <div class="card_content">
+                    <p>{{ product.name }}</p>
+                    <p>{{ product.description }}</p>
+                    {% if product.display_price %}
+                    <p>{{ product.price }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}
