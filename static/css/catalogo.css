@@ -1,0 +1,31 @@
+#content{
+    padding: 10px;
+    margin: 0;
+    background-color: #FFE6E6;
+}
+
+#card_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.card{
+    display: grid;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: white;
+    align-items: center;
+    /* justify-content: center; */
+    /* width: 300px; */
+}
+
+.card_image_container{
+    padding: 10px;
+    /* width: 100%; */
+}
+
+.card_image{
+    height: 100%;
+    width: 100%;
+}

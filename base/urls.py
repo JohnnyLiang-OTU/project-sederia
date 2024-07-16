@@ -5,6 +5,8 @@ from . import views
 
 urlpatterns = [
     path('', views.catalogo, name='catalogo'),
+    path('administrador/', views.admin_list, name='admin_list'),
+    path('add_product/', views.add_product, name="add_product")
 ]
 
 if settings.DEBUG:

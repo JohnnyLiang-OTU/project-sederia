@@ -1,0 +1,30 @@
+{% load static %}
+<div id="admin_list">
+    <h1>Sederia y Novedades Luisita</h1>
+    <div id="navbar">
+        <a href="{% url 'catalogo' %}">
+            Catalogo
+        </a> ---
+        <a href="{% url 'add_product' %}">
+            Agregar Producto
+        </a>
+    </div>
+    <div id="body">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+            {% for product in product_query %}
+            <tr>
+                <th>{{product.id}}</th>
+                <th>{{product.name}}</th>
+                <th>{{product.description}}</th>
+                <th>{{product.price}}</th>
+            </tr>
+            {% endfor %}
+        </table
+    </div>
+</div>
