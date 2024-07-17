@@ -52,3 +52,71 @@ function add_to_checked(param){
 function remove_from_checked(param){
     checked_array = checked_array.filter(item => item !== param);
 }
+
+// <--------------- End of Checkbox Logic -------------->
+
+// <----------------- Deletion Logic ----------------->
+
+function delete_checked_products(e){
+    if(checked_array.length === 0) return;
+    if(!confirm('Are you sure?')){
+        e.preventDefault();
+    } else {
+        delete_model_instances();
+        bulk_checkbox = document.getElementById('bulk_checkbox');
+        if(bulk_checkbox.checked){
+            bulk_checkbox.checked = false;
+        }
+    }
+}
+
+function delete_model_instances()
+{
+    url = '/delete_models/';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json',
+            'X-CSRFToken' : getToken('csrftoken'),
+        },
+        body: JSON.stringify({
+            'ids' : checked_array,
+        })
+    }).then(response => response.json())
+    .then(data => {
+        if (data.status === 'success'){
+            console.log('Model isntances deleted succesfully');
+            update_ui(checked_array);
+            checked_array = [];
+        } else {
+            console.error("Error deleting model instances: ", data.message);
+        }
+    }).catch(error => {
+        console.error("Error:", error);
+    });
+}
+
+function update_ui(param){
+    param.forEach(id => {
+        const element = document.getElementById(id);
+        if(element){
+            element.remove();
+        }
+    })
+}
+
+function getToken(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0,name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+}
