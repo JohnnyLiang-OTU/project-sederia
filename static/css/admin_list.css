@@ -1,0 +1,56 @@
+html, body{
+    padding: 0;
+    margin: 0;
+}
+
+#admin_list{
+    font-family: sans-serif;
+}
+
+#product_table{
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-size: 1.5em;
+}
+
+.title{
+    background-color: purple;
+    font-size: 60px;
+    color: white;
+}
+
+thead{
+    background-color: violet;
+}
+
+thead th{
+    padding: 5px;
+}
+
+tbody{
+    background-color: pink;
+}
+
+#navbar{
+    background-color: darkorchid;
+    padding: 10px;
+}
+
+.button{
+    display: inline-block;
+    background: purple;
+    border-radius: 4px;
+    font-family: "arial-black";
+    font-size: 18px;
+    color: #FFF;
+    padding: 8px 12px;
+    cursor: pointer;   
+  }
+
+a{
+    /* width: fit-content; */
+    text-decoration: none;
+}

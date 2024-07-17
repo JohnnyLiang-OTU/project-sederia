@@ -1,30 +1,33 @@
+<!DOCTYPE html>
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/admin_list.css' %}">
 <div id="admin_list">
-    <h1>Sederia y Novedades Luisita</h1>
+    <div class="title">Sederia y Novedades Luisita</div>
     <div id="navbar">
-        <a href="{% url 'catalogo' %}">
-            Catalogo
-        </a> ---
-        <a href="{% url 'add_product' %}">
-            Agregar Producto
-        </a>
+        <a href="{% url 'add_product' %}"><div class="button">Agregar Producto</div></a>
+        <a href="{% url 'catalogo' %}"><div class="button">Catalogo</div></a>
     </div>
     <div id="body">
-        <table>
-            <tr>
+        <table id="product_table">
+            <thead>
+                <th>
+                    <input id="bulk_checkbox" type="checkbox" autocomplete="off" onclick="handle_bulk_checkbox(this)">
+                </th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
-            </tr>
+            </thead>
             {% for product in product_query %}
-            <tr>
+            <tbody>
+                <th><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, {{product.id}})"></th> 
                 <th>{{product.id}}</th>
                 <th>{{product.name}}</th>
                 <th>{{product.description}}</th>
                 <th>{{product.price}}</th>
-            </tr>
+            </tbody>
             {% endfor %}
-        </table
+        </table>
+        <button type="button" onclick="delete_checked_products(event)">Delete</button>
     </div>
 </div>
