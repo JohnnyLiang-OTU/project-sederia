@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/admin_list.css' %}">
+<script src="{% static 'js/admin_list.js' %}"></script>
 <div id="admin_list">
     <div class="title">Sederia y Novedades Luisita</div>
     <div id="navbar">
@@ -18,16 +19,19 @@
                 <th>Description</th>
                 <th>Price</th>
             </thead>
-            {% for product in product_query %}
-            <tbody>
-                <th><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, {{product.id}})"></th> 
-                <th>{{product.id}}</th>
-                <th>{{product.name}}</th>
-                <th>{{product.description}}</th>
-                <th>{{product.price}}</th>
+            <tbody id="table_body">
+                {% for product in product_query %}
+                <tr id="{{product.id}}">
+                    <th><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, {{product.id}})"></th> 
+                    <th>{{product.id}}</th>
+                    <th>{{product.name}}</th>
+                    <th>{{product.description}}</th>
+                    <th>{{product.price}}</th>
+                </tr>
+                {% endfor %}
             </tbody>
-            {% endfor %}
         </table>
-        <button type="button" onclick="delete_checked_products(event)">Delete</button>
+        <!-- <button type="button" onclick="delete_checked_products(event)">Delete</button> -->
+        <button type="button" onclick="checked_array_body()">Tester</button>
     </div>
 </div>
