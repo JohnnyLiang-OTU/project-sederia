@@ -72,7 +72,7 @@ function delete_checked_products(e){
 
 function delete_model_instances()
 {
-    url = '/delete_models/';
+    url = '/administrador/delete_models/';
     fetch(url, {
         method: 'POST',
         headers: {

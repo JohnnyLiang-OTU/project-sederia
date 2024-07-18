@@ -43,7 +43,7 @@ tbody{
     display: inline-block;
     background: purple;
     border-radius: 4px;
-    font-family: "arial-black";
+    /* font-family: "arial-black"; */
     font-size: 18px;
     color: #FFF;
     padding: 8px 12px;
