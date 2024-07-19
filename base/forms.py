@@ -1,11 +1,12 @@
 from django import forms
 from .models import Product
-from django.forms import TextInput
+from django.forms import TextInput, Textarea
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = "__all__"
         widgets = {
-            'price' : TextInput(attrs={'placeholder' : ''})
+            'price' : TextInput(attrs={'placeholder' : ''}),
+            'description': Textarea(attrs={'rows': 8, 'cols': 50}),
         }

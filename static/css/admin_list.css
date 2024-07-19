@@ -30,6 +30,10 @@ thead th{
     padding: 5px;
 }
 
+.product_description{
+    font-size: 0.5em;
+}
+
 tbody{
     background-color: pink;
 }

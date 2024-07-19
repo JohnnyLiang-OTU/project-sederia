@@ -12,12 +12,11 @@
                     {% if product.image %}
                         <img alt="Render Problem" src="{{ product.image.url }}" class="card_image">
                     {% else %}
-                        <img alt="default_image" class="card_image">
+                        <img alt="default_image" src="{% static 'images/default_image.jpg' %}" class="card_image">
                     {% endif %}
                 </div>
                 <div class="card_content">
                     <p>{{ product.name }}</p>
-                    <p>{{ product.description }}</p>
                     {% if product.display_price %}
                     <p>{{ product.price }}</p>
                     {% endif %}
