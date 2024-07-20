@@ -7,6 +7,12 @@
     <div id="navbar">
         <a href="{% url 'add_product' %}"><div class="button">Agregar Producto</div></a>
         <a href="{% url 'catalogo' %}"><div class="button">Catalogo</div></a>
+        <select id="categorizer">
+            <option value="0">All</option>
+            {% for category in category_query %}
+            <option value="{{category.id}}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div id="body">
         <table id="product_table">
@@ -17,6 +23,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Categoria</th>
                 <th>Price</th>
                 <th>Show Price</th>
                 <th>Edit</th>
@@ -28,6 +35,7 @@
                     <th>{{product.id}}</th>
                     <th>{{product.name}}</th>
                     <th class="product_description">{{product.description|truncatechars:50}}</th>
+                    <th>{{product.category_id}}</th>
                     <th>{{product.price}}</th>
                     <th>{{product.display_price}}</th>
                     <th><a href="{% url 'edit_product' product.id %}" class="button">Edit</a></th>
@@ -36,6 +44,7 @@
             </tbody>
         </table>
         <!-- <button type="button" onclick="delete_checked_products(event)">Delete</button> -->
-        <button type="button" onclick="delete_checked_products(event)">Tester</button>
+        <button type="button" onclick="delete_checked_products(event)">Delete</button>
+        <!-- <button type="button" onclick="categorize_ui()">Test_button</button> -->
     </div>
 </div>

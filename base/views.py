@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from base.models import Product
+from base.models import Product, Category
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.decorators.http import require_POST
 from base.forms import ProductForm
@@ -14,8 +14,18 @@ def catalogo(request):
     context = {'product_query' : product_query}
     return render(request, 'base/catalogo.html', context)
 
-
-
+def filter_products(request, pk):
+    query_id = pk
+    if query_id:
+        if query_id == '0':
+            product_query = Product.objects.all()
+        else:
+            product_query = Product.objects.filter(category_id = query_id)
+    else:
+        product_query = Product.objects.all()
+    
+    product_query = list(product_query.values())
+    return JsonResponse(data={'product_query' : product_query})
 
 
 # <-------- ADMIN STUFF ---------->
@@ -23,7 +33,9 @@ def catalogo(request):
 @staff_member_required
 def admin_list(request):
     product_query = Product.objects.all()
-    context = {'product_query' : product_query}
+    category_query = Category.objects.all()
+    context = {'product_query' : product_query,
+               'category_query' : category_query}
     return render(request, 'admin/admin_list.html', context)
 
 @staff_member_required
