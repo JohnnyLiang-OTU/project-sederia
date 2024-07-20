@@ -14,8 +14,16 @@ def catalogo(request):
     context = {'product_query' : product_query}
     return render(request, 'base/catalogo.html', context)
 
-def filter_products(request, pk):
-    query_id = pk
+def categorized_catalog(request, category):
+    category = Category.objects.get(name__iexact=category)
+    if category:
+        product_query = Product.objects.filter(category = category)
+    else:
+        return HttpResponse("Error 404 - Category No Existe")
+    return render(request, 'base/catalogo.html', {'product_query' : product_query})
+
+def filter_products(request, fk):
+    query_id = fk
     if query_id:
         if query_id == '0':
             product_query = Product.objects.all()
@@ -98,3 +106,6 @@ def delete_selected_products(request):
             'status' : 'error',
             'message' : str(e)
         }, status=500)
+    
+def canvas(request):
+    return render(request, 'base/canvas.html', name="canvas")
