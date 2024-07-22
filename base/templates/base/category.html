@@ -1,0 +1,18 @@
+{% load static %}
+{% block category %}
+<link href="{% static 'css/category.css' %}" rel="stylesheet">
+<div class="category">
+    <a class="clickable_icon" href="#">
+        <img src="{% static 'images/category/tv.png' %}" alt="Televisores" class="category_image">
+    </a>
+    <a class="clickable_icon" href="#">
+        <img src="{% static 'images/category/console.png' %}" alt="Consolas" class="category_image">
+    </a>
+    <a class="clickable_icon" href="#">
+        <img src="{% static 'images/category/fridge.png' %}" alt="Refrigeradores" class="category_image">
+    </a>
+    <a class="clickable_icon" href="#">
+        <img src="{% static 'images/category/laptop.png' %}" alt="Laptops" class="category_image">
+    </a>
+</div>
+{% endblock category %}

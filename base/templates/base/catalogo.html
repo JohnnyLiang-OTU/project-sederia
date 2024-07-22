@@ -4,6 +4,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/catalogo.css' %}">
 <div id="content">
+    {% include 'category.html' %}
     <h1 class="title">Catalogo</h1>
     <div id="card_container">
         {% for product in product_query %}

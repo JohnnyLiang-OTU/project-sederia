@@ -1,12 +1,14 @@
 #content{
-    padding: 10px;
+    padding: 10px 40px 40px 40px;
     margin: 0;
-    background-color: #edcfcf;
+    background-color: #F5F5F5;
 }
 
 #card_container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    /* padding: 30px; */
 }
 
 .card{
@@ -14,7 +16,7 @@
     padding: 10px;
     margin: 5px;
     border-radius: 10px;
-    background-color: white;
+    background-color: #FFFFFF;
     align-items: center;
     /* justify-content: center; */
     /* width: 300px; */
@@ -28,4 +30,8 @@
 .card_image{
     height: 100%;
     width: 100%;
+}
+
+.card_content{
+    font-family: roboto, 'sans-serif', monospace;
 }
