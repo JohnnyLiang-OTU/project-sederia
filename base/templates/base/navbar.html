@@ -1,11 +1,31 @@
 {% load static %}
+{% load category_tags %}
+{% get_all_categories as categories %} 
 <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 <div class="navbar">
-    <div>LOGO</div>
-    <i class="fa-brands fa-whatsapp">####-####</i>
-    <i class="fas fa-envelope">example@gmail.com</i>
-    <i class="fas fa-map-marker-alt">Zona Libre ###, Colon</i>
+    <div class="top">
+        <div>LOGO</div>
+        <i class="fa-brands fa-whatsapp"> ####-####</i>
+        <i class="fas fa-envelope"> example@gmail.com</i>
+        <i class="fas fa-map-marker-alt"> Zona Libre ###, Colon</i>
+    </div>
+    <div class="bottom">
+        <div class="dropdown">
+            <button class="dropbtn">Departamentos
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <div class="row">
+                {% for category in categories %}
+                <div class="category_column">
+                    <a href="{% url 'categorized_catalog' category.name %}"><h3>{{category.name}}</h3></a>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+    </div class="bottom">
 </div>

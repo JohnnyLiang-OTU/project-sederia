@@ -13,6 +13,7 @@ urlpatterns = [
     path('administrador/delete_models/', views.delete_selected_products, name="delete_models"),
     path('administrador/edit/<str:pk>/', views.edit_product, name="edit_product"),
     path('canvas/', views.canvas, name="canvas"),
+    path('producto/<str:name>/', views.producto, name='producto')
 ]
 
 if settings.DEBUG:

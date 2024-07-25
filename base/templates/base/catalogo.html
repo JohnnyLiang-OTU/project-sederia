@@ -13,7 +13,7 @@
                     {% if product.image %}
                         <img alt="Render Problem" src="{{ product.image.url }}" class="card_image">
                     {% else %}
-                        <img alt="default_image" src="{% static 'images/default_image.jpg' %}" class="card_image">
+                        <a href="{% url 'producto' product.name %}"><img alt="default_image" src="{% static 'images/default_image.jpg' %}" class="card_image"></a>
                     {% endif %}
                 </div>
                 <div class="card_content">

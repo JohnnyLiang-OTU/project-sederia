@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from base.models import Product, Category
 from django.contrib.admin.views.decorators import staff_member_required
@@ -34,6 +34,11 @@ def filter_products(request, fk):
     
     product_query = list(product_query.values())
     return JsonResponse(data={'product_query' : product_query})
+
+def producto(request, name):
+    product = get_object_or_404(Product, name=name)
+    return render(request, 'base/producto.html', {'product':product})
+
 
 
 # <-------- ADMIN STUFF ---------->
@@ -108,4 +113,4 @@ def delete_selected_products(request):
         }, status=500)
     
 def canvas(request):
-    return render(request, 'base/canvas.html', name="canvas")
+    return render(request, 'base/canvas.html')
