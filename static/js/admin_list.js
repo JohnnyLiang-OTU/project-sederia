@@ -10,8 +10,8 @@ function handle_bulk_checkbox(self){
     const table_body = document.getElementById("table_body");
     const set_of_tr = table_body.querySelectorAll("tr");
     set_of_tr.forEach((tr) => {
-        var th = tr.querySelector('th:nth-child(1)');
-        var checkbox = th.querySelector('input');
+        var td = tr.querySelector('td:nth-child(1)');
+        var checkbox = td.querySelector('input');
         checkbox.checked = self.checked;
         handle_checkbox(checkbox, parseInt(tr.id), false);
     });
@@ -36,8 +36,8 @@ function handle_checkbox(self, param, checkAll = true){
 function check_all_unit_checkboxes(){
     const table_body = document.getElementById("table_body");
     const set_of_tr = table_body.querySelectorAll('tr');
-    const all_checked = Array.from(set_of_tr).every((tr) =>{
-        const checkbox = tr.querySelector('th:nth-child(1) input');
+    const all_checked = Array.from(set_of_tr).every((td) =>{
+        const checkbox = td.querySelector('td:nth-child(1) input');
         return checkbox.checked;
     });
     document.getElementById('bulk_checkbox').checked = all_checked;

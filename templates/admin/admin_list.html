@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/admin_list.css' %}">
-<script src="{% static 'js/admin_list.js' %}"></script>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/admin_list.css' %}">
+    <script src="{% static 'js/admin_list.js' %}"></script>
+</head>
+<body>
 <div id="admin_list">
-    <div class="title">Sederia y Novedades Luisita</div>
+    <div class="title">Exampler S.A</div>
     <div id="navbar">
-        <a href="{% url 'add_product' %}"><div class="button">Agregar Producto</div></a>
-        <a href="{% url 'catalogo' %}"><div class="button">Catalogo</div></a>
+        <a href="{% url 'add_product' %}" class="button">Agregar Producto</a>
+        <a href="{% url 'add_category' %}" class="button">Agregar Categoria</a>
+        <a href="{% url 'catalogo' %}" class="button">Catalogo</a>
         <select id="categorizer">
             <option value="0">All</option>
             {% for category in category_query %}
@@ -17,34 +22,35 @@
     <div id="body">
         <table id="product_table">
             <thead>
-                <th>
-                    <input id="bulk_checkbox" type="checkbox" autocomplete="off" onclick="handle_bulk_checkbox(this)">
-                </th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Categoria</th>
-                <th>Price</th>
-                <th>Show Price</th>
-                <th>Edit</th>
+                <tr>
+                    <th><input id="bulk_checkbox" type="checkbox" autocomplete="off" onclick="handle_bulk_checkbox(this)"></th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Categoria</th>
+                    <th>Price</th>
+                    <th>Show Price</th>
+                    <th>Edit</th>
+                </tr>
             </thead>
             <tbody id="table_body">
                 {% for product in product_query %}
                 <tr id="{{product.id}}">
-                    <th><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, {{product.id}})"></th> 
-                    <th>{{product.id}}</th>
-                    <th>{{product.name}}</th>
-                    <th class="product_description">{{product.description|truncatechars:50}}</th>
-                    <th>{{product.category_id}}</th>
-                    <th>{{product.price}}</th>
-                    <th>{{product.display_price}}</th>
-                    <th><a href="{% url 'edit_product' product.id %}" class="button">Edit</a></th>
+                    <td><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, {{product.id}})"></td> 
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td class="product_description">{{product.description|truncatechars:50}}</td>
+                    <td>{{product.category_id}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.display_price}}</td>
+                    <td><a href="{% url 'edit_product' product.id %}" class="button">Edit</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
-        </table>
-        <!-- <button type="button" onclick="delete_checked_products(event)">Delete</button> -->
-        <button type="button" onclick="delete_checked_products(event)">Delete</button>
-        <!-- <button type="button" onclick="categorize_ui()">Test_button</button> -->
+        </table><br>
+        <button type="button" class="button" onclick="delete_checked_products(event)">Delete</button>
+        <!-- <button type="button" onclick="checked_array_body()">Check</button> -->
     </div>
 </div>
+</body>
+</html>

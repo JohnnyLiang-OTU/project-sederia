@@ -8,12 +8,13 @@ urlpatterns = [
     path('catalogo/', views.catalogo, name='catalogo'),
     path('filter_products/<str:fk>/', views.filter_products, name='filter_products'),
     path('catalogo/<str:category>/', views.categorized_catalog, name="categorized_catalog"),
+    path('canvas/', views.canvas, name="canvas"),
+    path('producto/<str:name>/', views.producto, name='producto'),
     path('administrador/', views.admin_list, name='admin_list'),
     path('administrador/add_product/', views.add_product, name="add_product"),
     path('administrador/delete_models/', views.delete_selected_products, name="delete_models"),
     path('administrador/edit/<str:pk>/', views.edit_product, name="edit_product"),
-    path('canvas/', views.canvas, name="canvas"),
-    path('producto/<str:name>/', views.producto, name='producto')
+    path('administrador/add_category/', views.add_category, name="add_category"),
 ]
 
 if settings.DEBUG:

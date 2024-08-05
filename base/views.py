@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from base.models import Product, Category
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.decorators.http import require_POST
-from base.forms import ProductForm
+from base.forms import ProductForm, CategoryForm
 from django.urls import reverse
 import json
 
@@ -112,5 +112,29 @@ def delete_selected_products(request):
             'message' : str(e)
         }, status=500)
     
+def add_category(request):
+    if request.method == 'POST':
+        category_form = CategoryForm(request.POST, request.FILES)
+        if category_form.is_valid():
+            category_form.save()
+            action = request.POST.get('action')
+            if action == 'submit_add_another':
+                return JsonResponse({
+                    'success': True,
+                    'redirect_url': reverse('add_category')
+                })
+            else:
+                return JsonResponse({
+                    'success': True,
+                    'redirect_url': reverse('admin_list'),
+                })
+        else:
+            return JsonResponse({'success': False, 'errors': category_form.errors})
+    else:
+        category_form = CategoryForm()
+   
+    context = {'category_form': category_form}
+    return render(request, 'admin/category_form.html', context)
+
 def canvas(request):
     return render(request, 'base/canvas.html')
