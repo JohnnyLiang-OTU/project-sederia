@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<div class="hero_section">
+    <img class="hero_gif" src="{% static 'images/gif_hero_section.gif' %}">
+    <div class="info">
+        <div class="info_content">
+            <div class="company_name">Gera Enterprises S.A.</div>
+            <div class="container_travel">
+                <a href="#" class="button_travels">Productos</a>
+                <a href="#" class="button_travels">Cotizar</a>
+                <a href="#" class="button_travels">Sobre Nosotros</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
