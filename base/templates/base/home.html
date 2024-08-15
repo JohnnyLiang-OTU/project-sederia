@@ -3,34 +3,50 @@
 {% load static %}
 {% block content %}
 <div id="root">
+    <script src="{% static 'js/home.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <div class="hero_section">
-        <img class="hero_gif" src="{% static 'images/gif_hero_section.gif' %}">
-        <div class="info">
-            <div class="info_content">
-                <div class="company_name">Gera Enterprises S.A.</div>
-                <div class="container_travel">
-                    <a href="#" class="button_travels">Productos</a>
-                    <a href="#" class="button_travels">Cotizar</a>
-                    <a href="#" class="button_travels">Sobre Nosotros</a>
+    <section class="hero_section">
+        <div class="hero_container">
+            <img class="hero_gif" src="{% static 'images/gif_hero_section.gif' %}">
+            <div class="info">
+                <div class="info_content">
+                    <div class="company_name">Gera Enterprises S.A.</div>
+                    <div class="container_travel">
+                        <a href="#" class="button_travels">Productos</a>
+                        <a href="#" class="button_travels">Cotizar</a>
+                        <a href="#" class="button_travels">Sobre Nosotros</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     {% include 'base/logos.html' %}
-    <div class="argument_container">
-        <div class="argument_element">
-            <p class="argument_number">100%</p>
-            <p class="argument_text">de clientes satisfechos con su compra</p>
+    <section class="argument_section">
+        <div class="argument_container">
+            <div class="argument_element">
+                <p class="argument_number">100%</p>
+                <p class="argument_text">de clientes satisfechos con su compra</p>
+            </div>
+            <div class="argument_element">
+                <p class="argument_number">20+</p>
+                <p class="argument_text">paises gozan de nuestros productos</p>
+            </div>
+            <div class="argument_element">
+                <p class="argument_number">20+</p>
+                <p class="argument_text">marcas de confianza</p>
+            </div>
         </div>
-        <div class="argument_element">
-            <p class="argument_number">20+</p>
-            <p class="argument_text">paises gozan de nuestros productos</p>
-        </div>
-        <div class="argument_element">
-            <p class="argument_number">20+</p>
-            <p class="argument_text">marcas de confianza</p>
-        </div>
+    </section>
+    <div class="productos">
+        {% for product in product_query %}
+
+
+
+
+
+        {% endfor %}
     </div>
+
+
 </div>
 {% endblock content %}

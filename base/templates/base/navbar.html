@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 <div class="navbar">
     <div class="top">
-        <img id="logo_image" src="{% static 'images/logo.jpg' %}">
+        <a class="company_logo_a" href="{% url 'home' %}"><img id="company_logo" src="{% static 'images/logo.png' %}"></a>
         <a class="" href="#"><i class="fa-brands fa-whatsapp fa-lg" style="color: darkcyan"></i><span class="text">6235-6789</span></a>
         <a class="" href="#"><i class="far fa-envelope fa-lg" style="color: darkcyan"> </i><span class="text">example@gmail.com</span></a>
         <a class="" href="#"><i class="far fa-map-marker-alt fa-lg" style="color: darkcyan"></i><span class="text">Zona Libre ##, Colon</span></a>
@@ -17,5 +17,4 @@
       <div>FAQ</div>
       <div>About Us</div>
     </div>
-
 </div>

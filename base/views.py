@@ -10,7 +10,9 @@ import json
 # Create your views here.
 
 def home(request):
-    return render(request, 'base/home.html')
+    product_query = Product.objects.all()
+    context = {'product_query' : product_query}
+    return render(request, 'base/home.html', context)
 
 def catalogo(request):
     product_query = Product.objects.all()

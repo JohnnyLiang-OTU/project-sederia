@@ -3,14 +3,21 @@
     padding: 0;
     background-color: rgb(0, 51, 102);
     font-family: 'Arial', sans-serif;
-    color: darkblue;
+    /* color: darkblue; */
     font-size: 5mm;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-#logo_image{
-    height: 7%;
-    width: 7%;
+#company_logo{
+    /* margin-left: 30px; */
+    height: 75%;
+    width: 75%;
+}
+
+.company_logo_a{
+    margin-left: 30px;
+    /* height: 3%;
+    width: 3%; */
 }
 
 .top {
@@ -18,7 +25,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: white;
+    background-color: #f4f4f9;
 }
 
 .text{
