@@ -112,3 +112,61 @@ a{
 .argument_number, .argument_text {
     color: white;
 }
+
+/* <------------------------ Productos Carousel ---------------------> */
+.productos_section{
+    text-align: center;
+    padding: 50px 0;
+    overflow: hidden;
+}
+
+.productos_carousel{
+    display: flex;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    /* gap: 20px; */
+    padding: 20px;
+}
+
+.productos_item{
+    /* overflow: hidden; */
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.productos_floating{
+    position: absolute;
+    /* width: 100%; */
+    top: -50px;
+    z-index: 1;
+}
+
+.productos_item img{
+    width: auto;
+    height: 20vh;
+}
+
+.productos_info{
+    /* position: absolute; */
+    background-color: red;
+    width: 33vw;
+    z-index: 10;
+    padding: 60px 20px 20px;
+}
+
+.productos_item p{
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.productos_item:hover{
+    transform: scale(1.05);
+}

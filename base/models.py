@@ -16,7 +16,7 @@ class Product(models.Model):
     description = models.CharField(max_length=300, blank=True, unique=False)
     price = models.DecimalField(decimal_places=2, default=0.00, blank=True, unique=False, max_digits=5)
     display_price = models.BooleanField(default=False)
-    image = models.ImageField(null=True, blank=True, upload_to="media/")
+    image = models.FileField(null=True, blank=True, upload_to="media/")
     created = models.DateField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=2)
     def __str__(self):

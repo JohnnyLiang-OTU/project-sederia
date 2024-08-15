@@ -37,15 +37,21 @@
             </div>
         </div>
     </section>
-    <div class="productos">
-        {% for product in product_query %}
-
-
-
-
-
-        {% endfor %}
-    </div>
+    <section class="productos_section">
+        <h1 class="section-title">Productos</h1>
+        <div class="productos_carousel">
+            {% for product in product_query %}
+            <div class="productos_item">
+                <div class="productos_floating">
+                    <img src="{{product.image.url}}" alt="{{product.name}}"></div>
+                <div class="productos_info">
+                    <h3>{{product.name}}</h3>
+                    <p>{{product.description}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
 
 
 </div>
