@@ -1,3 +1,4 @@
+/* <--------------hero section-------------> */
 .hero_section {
     position: relative;
     width: 100%;
@@ -8,59 +9,95 @@
 .hero_gif {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensure the GIF covers the entire hero section without distortion */
+    object-fit: cover; 
 }
 
 .info {
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center the .info div both vertically and horizontally */
+    transform: translate(-50%, -50%); 
     text-align: center;
-    color: white; /* Adjust text color as needed */
+    color: white; 
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .info_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .company_name {
-    font-size: 4rem; /* Adjust font size as needed */
+    font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 20px; /* Space between the company name and buttons */
-    background-color: rgba(0, 51, 102, 0.5); /* Semi-transparent background for contrast */
-    color: white; /* Ensure text color is readable */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background-color: rgb(0, 51, 102, 0.8);
+    color: white;
+    border-radius: 5px; 
     text-transform: uppercase;
+    box-sizing: border-box;
 }
 
 .container_travel {
     display: flex;
-    gap: 20px;
-    width: 100%;
+    gap: 20px; 
+    justify-content: space-between;
 }
 
 .button_travels {
-    font-size: 1.5rem;
-    flex-grow: 1; /* Allow buttons to grow and take up equal space */
-    padding: 10px 20px;
-    background-color: rgba(0, 51, 102, 0.5);
+    flex: 1; /* Allow buttons to grow and take up equal space */
+    padding: 15px; /* Adjust padding as needed */
+    background-color: rgb(0, 51, 102, 0.8); /* Semi-transparent background */
     color: white;
     border-radius: 5px;
-    text-align: center;
+    text-align: center; /* Center text inside buttons */
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 2em;
 }
 
 .button_travels:hover {
-    background-color: rgba(0, 51, 102s, 0.7); /* Darken background on hover */
+    background-color: rgb(0, 51, 102, 1); /* Darken background on hover */
 }
 
 a{
     text-decoration: none;
+}
+
+/* <--------------argument section-------------> */
+
+.argument_container{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    background-color: rgb(0, 51, 102);
+    padding: 20px;
+}
+
+.argument_element{
+    max-width: 20vw;
+    border-radius: 5px;
+    flex: 1;
+    background-color: rgb(0, 112, 224);
+}
+
+.argument_number{
+    text-align: center;
+    font-size: 10mm;
+    font-weight: bold;
+}
+
+.argument_text{
+    text-align: center;
+    font-size: 5mm;
+    text-transform: uppercase;
+}
+
+.argument_number, .argument_text{
+    color: white;
 }

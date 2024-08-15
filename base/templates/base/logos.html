@@ -1,0 +1,23 @@
+{% load static %}
+{% block logos %}
+<div class="logo_container">
+    <img class="logo_image" src="{% static 'images/logos/apple.svg' %}">
+    <img class="logo_image" src="{% static 'images/logos/jbl.jpg' %}">
+    <img class="logo_image" src="{% static 'images/logos/lenovo.jpg' %}">
+    <img class="logo_image" src="{% static 'images/logos/lg.png' %}">
+    <img class="logo_image" src="{% static 'images/logos/samsung.jpg' %}">
+</div>
+
+<style>
+    .logo_container{
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .logo_image{
+        height: 80px;
+        width: 120px;
+    }
+</style>
+{% endblock logos %}
