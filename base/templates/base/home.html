@@ -44,14 +44,20 @@
             <div class="productos_item">
                 <div class="productos_floating">
                     <img src="{{product.image.url}}" alt="{{product.name}}"></div>
-                <div class="productos_info">
-                    <h3>{{product.name}}</h3>
-                    <p>{{product.description}}</p>
+                <div class="productos_item_bottom">
+                    <div class="productos_info">
+                        <h3>{{product.name}}</h3>
+                        <p>{{product.description}}</p>
+                    </div>
+                    <div>
+                        <button>Cotizar</button>
+                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </section>
+    {% include 'contact_form.html' %}
 
 
 </div>
