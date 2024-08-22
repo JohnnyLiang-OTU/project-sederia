@@ -1,56 +1,63 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/admin_list.css' %}">
-    <script src="{% static 'js/admin_list.js' %}"></script>
+    <script type="module" src="{% static 'js/admin_list.js' %}"></script>
 </head>
+
 <body>
-<div id="admin_list">
-    <div class="title">Exampler S.A</div>
-    <div id="navbar">
-        <a href="{% url 'add_product' %}" class="button">Agregar Producto</a>
-        <a href="{% url 'add_category' %}" class="button">Agregar Categoria</a>
-        <a href="{% url 'catalogo' %}" class="button">Catalogo</a>
-        <select id="categorizer">
-            <option value="0">All</option>
-            {% for category in category_query %}
-            <option value="{{category.id}}">{{ category.name }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div id="body">
-        <table id="product_table">
-            <thead>
-                <tr>
-                    <th><input id="bulk_checkbox" type="checkbox" autocomplete="off" onclick="handle_bulk_checkbox(this)"></th>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Categoria</th>
-                    <th>Price</th>
-                    <th>Show Price</th>
-                    <th>Edit</th>
-                </tr>
-            </thead>
-            <tbody id="table_body">
-                {% for product in product_query %}
-                <tr id="{{product.id}}">
-                    <td><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, {{product.id}})"></td> 
-                    <td>{{product.id}}</td>
-                    <td>{{product.name}}</td>
-                    <td class="product_description">{{product.description|truncatechars:50}}</td>
-                    <td>{{product.category_id}}</td>
-                    <td>{{product.price}}</td>
-                    <td>{{product.display_price}}</td>
-                    <td><a href="{% url 'edit_product' product.id %}" class="button">Edit</a></td>
-                </tr>
+    <div id="admin_list">
+        <div class="title">Exampler S.A</div>
+        <div id="navbar">
+            <a href="{% url 'add_product' %}" class="button">Agregar Producto</a>
+            <a href="{% url 'add_category' %}" class="button">Agregar Categoria</a>
+            <a href="{% url 'catalogo' %}" class="button">Catalogo</a>
+            <select id="categorizer">
+                <option value="0">All</option>
+                {% for category in category_query %}
+                <option value="{{category.id}}">{{ category.name }}</option>
                 {% endfor %}
-            </tbody>
-        </table><br>
-        <button type="button" class="button" onclick="delete_checked_products(event)">Delete</button>
-        <!-- <button type="button" onclick="checked_array_body()">Check</button> -->
+            </select>
+        </div>
+        <div id="body">
+            <table id="product_table">
+                <thead>
+                    <tr>
+                        <th><input id="bulk_checkbox" type="checkbox" autocomplete="off"
+                                onclick="handle_bulk_checkbox(this)"></th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Categoria</th>
+                        <th>Price</th>
+                        <th>Show Price</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody id="table_body">
+                    {% for product in product_query %}
+                    <tr id="{{product.id}}">
+                        <td><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, {{product.id}})">
+                        </td>
+                        <td>{{product.id}}</td>
+                        <td>{{product.name}}</td>
+                        <td class="product_description">{{product.description|truncatechars:50}}</td>
+                        <td>{{product.category_id}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.display_price}}</td>
+                        <td><a href="{% url 'edit_product' product.id %}" class="button">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table><br>
+            <button type="button" class="button" onclick="delete_checked_products(event)">Delete</button>
+            <!-- <button type="button" onclick="checked_array_body()">Check</button> -->
+        </div>
     </div>
-</div>
 </body>
+
 </html>

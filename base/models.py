@@ -22,3 +22,9 @@ class Product(models.Model):
     def __str__(self):
         return f'Name: {self.name} || Description: {self.description} || Price: {self.price}'
 
+class Counter(models.Model):
+    name = models.CharField(max_length=100, unique=True)  # For identifying different counters
+    value = models.IntegerField(default=0) 
+
+    def __str__(self):
+        return f"{self.name}: {self.value}"

@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 <div id="root">
-    <script src="{% static 'js/home.js' %}"></script>
+    <script type="module" src="{% static 'js/home.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <section class="hero_section">
         <div class="hero_container">
@@ -43,7 +43,8 @@
             {% for product in product_query %}
             <div class="productos_item">
                 <div class="productos_floating">
-                    <img src="{{product.image.url}}" alt="{{product.name}}"></div>
+                    <img src="{{product.image.url}}" alt="{{product.name}}">
+                </div>
                 <div class="productos_item_bottom">
                     <div class="productos_info">
                         <h3>{{product.name}}</h3>

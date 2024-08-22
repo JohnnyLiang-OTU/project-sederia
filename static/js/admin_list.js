@@ -56,53 +56,53 @@ function remove_from_checked(param){
 
 // <------------- Category Query Logic ----------------->
 
-document.addEventListener('DOMContentLoaded', function() {
-    var select_element = document.getElementById('categorizer');
-    select_element.addEventListener('change', function(event) {
-        var selected_category = event.target.value;
-        catalogo_categorized_get(selected_category);
-    });
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     var select_element = document.getElementById('categorizer');
+//     select_element.addEventListener('change', function(event) {
+//         var selected_category = event.target.value;
+//         catalogo_categorized_get(selected_category);
+//     });
+// });
 
-function catalogo_categorized_get(category){
-    fetch(`/filter_products/${category}/`).then(response => response.json())
-    .then(data => {
-        categorize_ui(data.product_query); 
-    })
-    .catch(error => {console.error("Error:", error); console.log("Error:", data.error)});
-}
+// function catalogo_categorized_get(category){
+//     fetch(`/filter_products/${category}/`).then(response => response.json())
+//     .then(data => {
+//         categorize_ui(data.product_query); 
+//     })
+//     .catch(error => {console.error("Error:", error); console.log("Error:", data.error)});
+// }
 
-// function to update the ui based on the category chosen.
-function categorize_ui(products){
-    const tableBody = document.getElementById('table_body');
-    tableBody.innerHTML = ''; // Clear existing rows
+// // function to update the ui based on the category chosen.
+// function categorize_ui(products){
+//     const tableBody = document.getElementById('table_body');
+//     tableBody.innerHTML = ''; // Clear existing rows
 
-    products.forEach(product => {
-        const row = document.createElement('tr');
-        row.id = product.id;
+//     products.forEach(product => {
+//         const row = document.createElement('tr');
+//         row.id = product.id;
         
-        row.innerHTML = `
-            <th><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, ${product.id})"></th>
-            <th>${product.id}</th>
-            <th>${product.name}</th>
-            <th class="product_description">${truncateString(product.description, 50)}</th>
-            <th>${product.category_id}</th>
-            <th>${product.price}</th>
-            <th>${product.display_price}</th>
-            <th><a href="/administrador/edit/${product.id}/" class="button">Edit</a></th>
-        `;
+//         row.innerHTML = `
+//             <th><input type="checkbox" autocomplete="off" onclick="handle_checkbox(this, ${product.id})"></th>
+//             <th>${product.id}</th>
+//             <th>${product.name}</th>
+//             <th class="product_description">${truncateString(product.description, 50)}</th>
+//             <th>${product.category_id}</th>
+//             <th>${product.price}</th>
+//             <th>${product.display_price}</th>
+//             <th><a href="/administrador/edit/${product.id}/" class="button">Edit</a></th>
+//         `;
 
-        tableBody.appendChild(row);
-    });
-}
+//         tableBody.appendChild(row);
+//     });
+// }
 
-// Helper function to truncate strings
-function truncateString(str, num) {
-    if (str.length <= num) {
-      return str;
-    }
-    return str.slice(0, num) + '...';
-}
+// // Helper function to truncate strings
+// function truncateString(str, num) {
+//     if (str.length <= num) {
+//       return str;
+//     }
+//     return str.slice(0, num) + '...';
+// }
 
 // <----------------- Deletion Logic ----------------->
 
@@ -154,7 +154,7 @@ function delete_ui(param){
     })
 }
 
-function getToken(name) {
+export function getToken(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie != '') {
       const cookies = document.cookie.split(';');

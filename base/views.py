@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
-from base.models import Product, Category
+from base.models import Product, Category, Counter
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.decorators.http import require_POST
 from base.forms import ProductForm, CategoryForm
 from django.urls import reverse
-import json
-
+from django.core.mail import EmailMessage
+from django.conf import settings
+import json, os
 # Create your views here.
+
 
 def home(request):
     product_query = Product.objects.all()
@@ -44,7 +46,32 @@ def producto(request, name):
     product = get_object_or_404(Product, name=name)
     return render(request, 'base/producto.html', {'product':product})
 
+def send_email(request):
+    email_counter = Counter.objects.get(name='email_counter')
+    try:
+        data = json.loads(request.body)
+        name = data.get('name')
+        email = data.get('email')
+        telephone = data.get('telephone')
+        message = data.get('message')
+        body = f"""Nombre: {name}\nEmail: {email}\nTelefono: {telephone}\n\n{message}"""
+        email_message = EmailMessage(
+            "Quote Request #"+email_counter,
+            body,
+            settings.EMAIL_HOST_USER,
+            ["zicrox2@hotmail.com"],
+        )
 
+        email_counter.value += 1
+        email_counter.save()
+
+        return JsonResponse({
+            "success": True,
+        })
+    except:
+        return JsonResponse({
+            "success": False,
+        })
 
 # <-------- ADMIN STUFF ---------->
 
@@ -143,3 +170,5 @@ def add_category(request):
 
 def canvas(request):
     return render(request, 'base/canvas.html')
+
+# HELPER FUNCTIONS
