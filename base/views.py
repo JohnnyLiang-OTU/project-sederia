@@ -16,6 +16,9 @@ def home(request):
     context = {'product_query' : product_query}
     return render(request, 'base/home.html', context)
 
+def about_us(request):
+    return render(request, 'base/about_us.html')
+
 def catalogo(request):
     product_query = Product.objects.all()
     context = {'product_query' : product_query}

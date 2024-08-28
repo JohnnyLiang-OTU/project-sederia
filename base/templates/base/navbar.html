@@ -4,15 +4,15 @@
 <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 <div class="navbar">
-    <div class="top">
+    <div class="top-section">
         <a class="company_logo_a" href="{% url 'home' %}"><img id="company_logo" src="{% static 'images/logo.png' %}"></a>
         <a class="" href="#"><i class="fa-brands fa-whatsapp fa-lg" style="color: darkcyan"></i><span class="text">6235-6789</span></a>
         <a class="" href="#"><i class="far fa-envelope fa-lg" style="color: darkcyan"> </i><span class="text">example@gmail.com</span></a>
         <a class="" href="#"><i class="far fa-map-marker-alt fa-lg" style="color: darkcyan"></i><span class="text">Zona Libre ##, Colon</span></a>
     </div>
-    <div class="bottom">
-      <div>Products</div>
-      <div>FAQ</div>
-      <div>About Us</div>
+    <div class="bottom-section">
+      <div><a href="{% url 'about_us' %}">Products</a></div>
+      <div><a href="{% url 'about_us' %}">FAQ</a></div>
+      <div><a href="{% url 'about_us' %}">Sobre Nosotros</a></div>
     </div>
 </div>
