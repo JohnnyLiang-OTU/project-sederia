@@ -2,6 +2,11 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from rest_framework.routers import DefaultRouter
+from base.views import ProductViewSet
+
+post_router = DefaultRouter()
+post_router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     path('', views.home, name='home'),

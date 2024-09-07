@@ -1,0 +1,11 @@
+.brands-container{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.brands-image{
+    height: 80px;
+    width: 200px;
+}

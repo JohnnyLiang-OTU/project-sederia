@@ -7,8 +7,14 @@ from base.forms import ProductForm, CategoryForm
 from django.urls import reverse
 from django.core.mail import EmailMessage
 from django.conf import settings
-import json, os
+from base.serializers import ProductSerializer
+from rest_framework.viewsets import ModelViewSet
+import json
 # Create your views here.
+
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 
 def home(request):
