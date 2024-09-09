@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import "../css/canvas.css";
 type Product = {
     name: string;
     description: string;
     image: string;
 }
 
-function Canvas() {
+function Products() {
     const [data, setData] = useState<Product[]>([]);
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/products/")
@@ -43,4 +42,4 @@ function Canvas() {
     );
 }
 
-export default Canvas;
+export default Products;
