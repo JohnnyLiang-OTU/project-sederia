@@ -3,7 +3,7 @@ import "../css/navbar.css"
 
 export default function Navbar() {
     return (
-        <div className="navbar">
+        <div className="bg-dark navbar">
             <div className="navbar-left-section">
                 <h5 className="company-name">Gera S.A Enterprises</h5>
                 <h6 className="company-name">Electronicos y Linea Blanca</h6>

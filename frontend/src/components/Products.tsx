@@ -23,15 +23,15 @@ function Products() {
     }, []);
     return (
 
-        <section className="bg-light pt-5 pb-5 shadow-sm">
+        <section className="bg-dark pt-5 pb-5 shadow-sm">
             <div className="container">
                 <p>
-                    <h1 className="text-upppercase border-bottom">Data From the Api</h1>
+                    <h1 className="text-upppercase text-light border-bottom">Productos</h1>
                 </p>
 
                 <div className="row">
                     {data.map((item) => (
-                        <div className="col-lg-3 md-4 mb-3 d-flex align-items-stretch">
+                        <div className="col-lg-3 md-4 mb-3 d-flex align-items-stretch bg-dark">
                             <Card image={item.image} name={item.name} description={item.description} />
                         </div>
                     ))
