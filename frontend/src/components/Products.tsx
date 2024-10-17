@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 type Product = {
+    id: number;
     name: string;
     description: string;
     image: string;
@@ -22,16 +23,12 @@ function Products() {
             });
     }, []);
     return (
-
         <section className="bg-dark pt-5 pb-5 shadow-sm">
             <div className="container">
-                <p>
-                    <h1 className="text-upppercase text-light border-bottom">Productos</h1>
-                </p>
-
+                <h1 className="text-upppercase text-light border-bottom">Productos</h1>
                 <div className="row">
                     {data.map((item) => (
-                        <div className="col-lg-3 md-4 mb-3 d-flex align-items-stretch bg-dark">
+                        <div key={item.id} className="col-lg-3 md-4 mb-3 d-flex align-items-stretch bg-dark">
                             <Card image={item.image} name={item.name} description={item.description} />
                         </div>
                     ))
