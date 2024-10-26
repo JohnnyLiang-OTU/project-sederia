@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log(username + " " + password);
+
         try {
             const response = await fetch("http://127.0.0.1:8000/api/login/", {
                 method: "POST",

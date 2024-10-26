@@ -22,6 +22,7 @@ urlpatterns = [
     path('administrador/delete_models/', views.delete_selected_products, name="delete_models"),
     path('administrador/edit/<str:pk>/', views.edit_product, name="edit_product"),
     path('administrador/add_category/', views.add_category, name="add_category"),
+    path('api/login/', views.login_view, name="login_view"),
 ]
 
 if settings.DEBUG:

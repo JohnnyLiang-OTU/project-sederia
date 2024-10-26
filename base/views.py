@@ -12,11 +12,6 @@ from rest_framework.viewsets import ModelViewSet
 import json
 # Create your views here.
 
-class ProductViewSet(ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-
 def home(request):
     product_query = Product.objects.all()
     context = {'product_query' : product_query}
@@ -180,4 +175,27 @@ def add_category(request):
 def canvas(request):
     return render(request, 'base/canvas.html')
 
-# HELPER FUNCTIONS
+# API Views
+from django.contrib.auth import authenticate
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def login_view(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        username = data.get("username")
+        password = data.get("password")
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            return JsonResponse({
+                "username": user.username,
+                "email": user.email,
+                "is_superuser": user.is_superuser
+            })
+        else:
+            return JsonResponse({"error": "Invalid credentials"}, status=400)
+        
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
