@@ -1,4 +1,7 @@
 /* <--------------hero section-------------> */
+html {
+  scroll-behavior: smooth;
+}
 
 .hero_logo{
   max-width: 350px;
