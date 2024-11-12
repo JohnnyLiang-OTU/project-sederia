@@ -1,21 +1,27 @@
 import { getToken } from "./admin_list.js";
 
-const form = document.getElementById("contactForm");
+// Gets contact form
+const form = document.getElementById("contactForm"); 
+// Get button
+const submit_button = document.getElementById("contact_form_button"); 
 
 if (form) {
-    form.addEventListener("submit", (event) => {
-        console.log("Submit button clicked.");
+    // When button is clicked...
+    submit_button.addEventListener("click", (event) => {
+
+        // If not Valid
         if (!form.checkValidity()) {
             event.preventDefault();
+            
+            // Stop if invalid
             event.stopPropagation();
-            console.log("Form is invalid; displaying validation messages.");
-            const formDataString = buildFormDataString(form);
-            console.log(formDataString);
-            send_email(formDataString);
+
+        // if Valid
         } else {
+            
+            // Build message
             const formDataString = buildFormDataString(form);
             send_email(formDataString);
-            console.log("Form is valid; submitting.");
         }
         form.classList.add("was-validated");
     });
@@ -37,7 +43,7 @@ if (form) {
 }
 
 function buildFormDataString() {
-    let formDataString = "Form Contact Submission\n";
+    let formDataString = "Solicitud de Contacto\n";
     const formControls = document.querySelectorAll(".form-control");
 
     formControls.forEach((control) => {
@@ -57,7 +63,9 @@ function send_email(context) {
             'Content-Type': 'application/json',
             'X-CSRFToken': getToken('csrftoken')
         },
-        body: JSON.stringify(context),
+        body: JSON.stringify({
+            "data_string": context,
+        }),
     })
         .then(response => {
             if (!response.ok) {
@@ -65,6 +73,6 @@ function send_email(context) {
             }
             return response.json();
         })
-        .then(data => console.log('Email sent successfully:', data))
+        .then(data => console.log('Email sent successfully:', data['status']))
         .catch(error => console.error('There was an error sending the email:', error));
 }

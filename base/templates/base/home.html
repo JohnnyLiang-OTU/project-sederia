@@ -14,23 +14,17 @@
     <section class="hero_section bg-dark text-white min-vh-100 d-flex justify-content-center align-items-center py-5">
         <div class="hero_container text-center">
             <img class="hero_logo img-fluid bg-dark" src="{% static 'images/logo_transparent.png' %}" alt="Hero Logo">
-            <h1 class="display-4 fw-bold">
-                Descubre lo Ultimo en Electrónica
-            </h1>
-            <p class="lead">
-                Tecnología Innovadora y Calidad Máxima
-            </p>
             <div>
-                <a href="#shop" class="btn btn-outline-primary btn-lg me-3">
+                <a href="#shop" class="btn btn-outline-primary btn-xl me-3 fs-2">
                     Cotiza con Nosotros
                 </a>
-                <a href="{% url 'catalogo' %}" class="btn btn-outline-light btn-lg">
+                <a href="{% url 'catalogo' %}" class="btn btn-outline-light btn-xl fs-2">
                     Ver Productos
                 </a>
             </div>
         </div>
     </section>
-    <section class="argument_section">
+    <!-- <section class="argument_section">
         <div class="argument_container bg-dark">
             <div class="card p-3 w-50 text-center bg-secondary text-white">
                 <blockquote class="blockquote mb-0">
@@ -51,10 +45,10 @@
                 </blockquote>
             </div>
         </div>
-    </section>
+    </section> -->
     {% include 'base/logos.html' %}
     <section class="productos_section">
-        <h1 class="section-title">Productos</h1>
+        <!-- <h1 class="section-title">Productos</h1> -->
         <div class="productos_carousel">
             {% for product in product_query %}
             <div class="productos_item">
@@ -64,7 +58,7 @@
                 <div class="productos_item_bottom">
                     <div class="productos_info">
                         <h3>{{product.name}}</h3>
-                        <p>{{product.description}}</p>
+                        <!-- <p>{{product.description}}</p> -->
                     </div>
                     <div>
                         <a class="btn-cotizar" href="#contact-section">Cotizar</a>
@@ -74,9 +68,7 @@
             {% endfor %}
         </div>
     </section>
-    {% comment 'As of Nov 11, feature doesn't work because of SMTP auth error. %}
     {% include 'contact_form.html' %} 
-    {% endcomment %}
-    {% include 'footer.html' %}
+
 </div>
 {% endblock content %}

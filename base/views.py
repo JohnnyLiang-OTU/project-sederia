@@ -21,8 +21,10 @@ def about_us(request):
     return render(request, 'base/about_us.html')
 
 def catalogo(request):
-    product_query = Product.objects.all()
-    context = {'product_query' : product_query}
+    product_query = Product.objects.exclude(category = 2)
+    category_query = Category.objects.exclude(id = 2)
+    context = {'product_query' : product_query,
+               'category_query' : category_query}
     return render(request, 'base/catalogo.html', context)
 
 def categorized_catalog(request, category):
@@ -52,32 +54,40 @@ def producto(request, name):
 
 
 import smtplib
+from django.core.mail import EmailMessage, get_connection
 def send_email(request):
-    email_counter = Counter.objects.get_or_create(name='email_counter')
-    try:
-        data = json.loads(request.body)
-        server = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
-        server.starttls()
-        server.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
-        email_message = EmailMessage(
-            subject="Quote Request #"+email_counter,
-            body=data,
-            from_email=settings.EMAIL_HOST_USER,
-            to=["zicrox2@hotmail.com"],
-        )
-        email_message.send(fail_silently=False)
+    if request.method == 'POST':
+    
+        # Tracks how many emails have been sent
+        current_counter = Counter.objects.get(name='email_counter')
 
-        email_counter.value += 1
-        email_counter.save()
+        try:
+            data = json.loads(request.body)
+            data_string = data.get('data_string')
+            subject = f"Cotizacion #{current_counter}"
+            recipient_list = ["geratechservices@gmail.com"]
+            from_email = "MS_OEhYFV@trial-3z0vklo1zp7g7qrx.mlsender.net"
+            message = data_string
 
-        return JsonResponse({
-            "success": True,
-        })
-    except:
-        return JsonResponse({
-            "success": False,
-        })
-
+            with get_connection(
+                host=settings.EMAIL_HOST,
+                port=settings.EMAIL_PORT,
+                username=settings.MAILERSEND_SMTP_USERNAME,
+                password=settings.MAILERSEND_API_KEY,
+                use_tls=True,
+            ) as connection:
+                r = EmailMessage(
+                    subject=subject,
+                    body=message,
+                    to=recipient_list,
+                    from_email=from_email,
+                    connection=connection).send()
+            return JsonResponse({"status": "ok"})
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+    return JsonResponse({"error":"Method not allowd"}, status=405)
 # <-------- ADMIN STUFF ---------->
 
 @staff_member_required

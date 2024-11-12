@@ -31,3 +31,8 @@ input[type="text"] {
     padding: 0.5em;
     font-size: 1.2rem;
 }
+
+.title-link {
+    text-decoration: none;
+    color: #000;
+}

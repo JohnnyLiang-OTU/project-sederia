@@ -1,13 +1,28 @@
 {% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
 {% block logos %}
-<div class="logo_container">
-    <img class="logo_image" src="{% static 'images/logos/apple.svg' %}">
-    <img class="logo_image" src="{% static 'images/logos/jbl.jpg' %}">
-    <img class="logo_image" src="{% static 'images/logos/lenovo.jpg' %}">
-    <img class="logo_image" src="{% static 'images/logos/lg.png' %}">
-    <img class="logo_image" src="{% static 'images/logos/samsung.jpg' %}">
+<div class="container my-3">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto logo-col">
+            <img class="logo_image" src="{% static 'images/logos/apple.svg' %}" alt="Apple">
+        </div>
+        <div class="col-auto logo-col">
+            <img class="logo_image" src="{% static 'images/logos/jbl.jpg' %}" alt="JBL">
+        </div>
+        <div class="col-auto logo-col">
+            <img class="logo_image" src="{% static 'images/logos/lenovo.jpg' %}" alt="Lenovo">
+        </div>
+        <div class="col-auto logo-col">
+            <img class="logo_image" src="{% static 'images/logos/lg.png' %}" alt="LG">
+        </div>
+        <div class="col-auto logo-col">
+            <img class="logo_image" src="{% static 'images/logos/samsung.jpg' %}" alt="Samsung">
+        </div>
+    </div>
 </div>
-
 <style>
     .logo_container {
         display: flex;
@@ -15,17 +30,50 @@
         gap: 50px;
     }
 
+    .logo-col {
+        flex: 0 0 auto;
+        width: 20%;
+    }
+
     .logo_image {
-        height: 80px;
-        width: 120px;
-        opacity: 0; /* Start hidden */
-        transform: scale(0.8); /* Start slightly smaller */
-        transition: opacity 1s ease-out, transform 1s ease-out; /* Smooth transition */
+        max-width: 100px;
+    }
+
+    @media (max-width: 991px) {
+        .logo-col {
+            width: 25%;
+        }
+
+        .logo_image {
+            max-width: 80px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .logo-col {
+            width: 33.33%;
+        }
+
+        .logo_image {
+            max-width: 60px;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .logo-col {
+            width: 50%;
+        }
+
+        .logo_image {
+            max-width: 50px;
+        }
     }
 
     .logo_image.in-view {
-        opacity: 1; /* Make visible */
-        transform: scale(1); /* Return to original size */
+        opacity: 1;
+        /* Make visible */
+        transform: scale(1);
+        /* Return to original size */
     }
 </style>
 {% endblock logos %}
