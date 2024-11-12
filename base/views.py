@@ -50,21 +50,22 @@ def producto(request, name):
     product = get_object_or_404(Product, name=name)
     return render(request, 'base/producto.html', {'product':product})
 
+
+import smtplib
 def send_email(request):
-    email_counter = Counter.objects.get(name='email_counter')
+    email_counter = Counter.objects.get_or_create(name='email_counter')
     try:
         data = json.loads(request.body)
-        name = data.get('name')
-        email = data.get('email')
-        telephone = data.get('telephone')
-        message = data.get('message')
-        body = f"""Nombre: {name}\nEmail: {email}\nTelefono: {telephone}\n\n{message}"""
+        server = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
+        server.starttls()
+        server.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
         email_message = EmailMessage(
-            "Quote Request #"+email_counter,
-            body,
-            settings.EMAIL_HOST_USER,
-            ["zicrox2@hotmail.com"],
+            subject="Quote Request #"+email_counter,
+            body=data,
+            from_email=settings.EMAIL_HOST_USER,
+            to=["zicrox2@hotmail.com"],
         )
+        email_message.send(fail_silently=False)
 
         email_counter.value += 1
         email_counter.save()

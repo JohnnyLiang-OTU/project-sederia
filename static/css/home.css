@@ -1,15 +1,8 @@
 /* <--------------hero section-------------> */
-.hero_container {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Ensure the hero section takes up the full viewport height */
-    overflow: hidden;
-}
 
-.hero_gif {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
+.hero_logo{
+  max-width: 350px;
+  max-height: 350px;
 }
 
 .info {
