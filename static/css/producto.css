@@ -1,0 +1,23 @@
+/* Navbar Alignment */
+input[type="text"] {
+    max-width: 300px;
+    border-radius: 0;
+}
+
+.container > .d-flex > .btn {
+    padding: 0.5em;
+    font-size: 1.2rem;
+}
+
+.title-link {
+    /* text-decoration: none; */
+    color: #000;
+}
+
+.tracking-tighter {
+    letter-spacing: -0.05em;
+}
+
+.font-family-serif {
+    font-family: serif;
+}

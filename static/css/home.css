@@ -20,6 +20,10 @@ html {
     box-sizing: border-box;
 }
 
+.no-decoration{
+  text-decoration: none;
+}
+
 .info_content {
     max-width: 1200px;
     margin: 0 auto;
@@ -189,6 +193,7 @@ a{
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
 button:hover {

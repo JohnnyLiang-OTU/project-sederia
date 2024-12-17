@@ -1,60 +1,34 @@
-<!DOCTYPE html>
 {% load static %}
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <div class="form p-4 bg-dark text-white" id="contact-section">
-        <div class="row">
-            <div class="info_labels col text-left p-3">
-                <h1 class="align-text-middle">Tienes alguna duda?</h1>
-                <p class="text-light">Estamos para servirle! Rellene este formulario y escribanos un mensaje para atenderlo. 
-                    Aparte, nos puede contactar directamente a nuestro correo electronico o llamanos a nuestro telefono celular.
-                </p>
-                <p class="fs-5 text-light mb-3 text-decoration-underline">gera.correo@gmail.com</p>
-                <p class="fs-5 text-light text-decoration-underline">+507 8888-4444</p>
-            </div>
-            <form class="col border rounded" id="contactForm" novalidate>
-                <!-- Name Field -->
-                <div class="col-md-auto mb-3">
-                    <label for="nameFormControlInput" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nameFormControlInput" placeholder="John Doe" required>
-                    <div class="invalid-feedback">Ingrese su nombre</div>
-                </div>
-    
-                <!-- Email Field -->
-                <div class="col-md-auto mb-3">
-                    <label for="emailFormControlInput" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="emailFormControlInput" placeholder="john.doe@ejemplo.com" >
-                    <div class="invalid-feedback">Ingrese su correo</div>
-                </div>
-                <!-- Telephone Field -->
-                <div class="col-md-auto mb-3">
-                    <label for="telephoneFormControlInput" class="form-label">Teléfono / Número Celular</label>
-                    <input type="tel" class="form-control" id="telephoneFormControlInput" placeholder="(+507)1234-0000" required>
-                    <div class="invalid-feedback">Ingrese su telefono.</div>
-                </div>
-    
-                <!-- Message Field -->
-                <div class="col-md-auto mb-3">
-                    <label for="msgFormControlInput" class="form-label">Mensaje</label>
-                    <textarea class="form-control" id="msgFormControlInput" rows="4"
-                        placeholder="Escribe tu mensaje aquí..."></textarea>
-                </div>
-                <!-- Submit Button -->
-                <div class="text-center">
-                    <button id="contact_form_button" type="button" class="btn btn-primary btn-lg">Enviar Mensaje</button>
-                </div>
-            </form>
-        </div>
+<form class="col border rounded" id="contactForm" novalidate>
+    <!-- Name Field -->
+    <div class="col-md-auto mb-3">
+        <label for="nameFormControlInput" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nameFormControlInput" placeholder="John Doe" required>
+        <div class="invalid-feedback">Ingrese su nombre</div>
     </div>
-    <script type="module" src="{% static 'js/contact_form.js' %}"></script>
-</body>
 
-</html>
+    <!-- Email Field -->
+    <div class="col-md-auto mb-3">
+        <label for="emailFormControlInput" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="emailFormControlInput" placeholder="john.doe@ejemplo.com">
+        <div class="invalid-feedback">Ingrese su correo</div>
+    </div>
+    <!-- Telephone Field -->
+    <div class="col-md-auto mb-3">
+        <label for="telephoneFormControlInput" class="form-label">Teléfono / Número Celular</label>
+        <input type="tel" class="form-control" id="telephoneFormControlInput" placeholder="(+507)1234-0000" required>
+        <div class="invalid-feedback">Ingrese su telefono.</div>
+    </div>
+
+    <!-- Message Field -->
+    <div class="col-md-auto mb-3">
+        <label for="msgFormControlInput" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="msgFormControlInput" rows="4"
+            placeholder="Escribe tu mensaje aquí..."></textarea>
+    </div>
+    <!-- Submit Button -->
+    <div class="text-center mb-3">
+        <button id="contact_form_button" type="button" class="btn btn-primary btn-lg">Enviar Mensaje</button>
+    </div>
+</form>
+<script type="module" src="{% static 'js/contact_form.js' %}"></script>

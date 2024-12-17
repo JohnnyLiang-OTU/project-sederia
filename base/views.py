@@ -13,7 +13,7 @@ import json
 # Create your views here.
 
 def home(request):
-    product_query = Product.objects.all()
+    product_query = Product.objects.filter(category=2)
     context = {'product_query' : product_query}
     return render(request, 'base/home.html', context)
 
@@ -22,18 +22,21 @@ def about_us(request):
 
 def catalogo(request):
     product_query = Product.objects.exclude(category = 2)
-    category_query = Category.objects.exclude(id = 2)
+    categories_excluding_generic = Category.objects.exclude(id = 2)
     context = {'product_query' : product_query,
-               'category_query' : category_query}
+               'category_query' : categories_excluding_generic}
     return render(request, 'base/catalogo.html', context)
 
 def categorized_catalog(request, category):
     category = Category.objects.get(name__iexact=category)
+    categories_excluding_generic = Category.objects.exclude(id = 2)
     if category:
         product_query = Product.objects.filter(category = category)
     else:
         return HttpResponse("Error 404 - Category No Existe")
-    return render(request, 'base/catalogo.html', {'product_query' : product_query})
+    context = {'product_query' : product_query,
+               'category_query' : categories_excluding_generic}
+    return render(request, 'base/catalogo.html', context)
 
 def filter_products(request, fk):
     query_id = fk
