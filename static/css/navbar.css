@@ -1,75 +1,38 @@
-.navbar {
-    margin: 0;
-    padding: 0;
-    background-color: rgb(0, 51, 102);
-    font-family: 'Arial', sans-serif;
-    /* color: darkblue; */
-    font-size: 5mm;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
 }
 
-#company_logo{
-    /* margin-left: 30px; */
-    height: 75%;
-    width: 75%;
-}
-
-.company_logo_a{
-    margin-left: 30px;
-    /* height: 3%;
-    width: 3%; */
-}
-
-.top-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f4f4f9;
-}
-
-.text{
-    font-size: 6mm;
-    color: black;
+h1 {
     font-weight: bold;
+    letter-spacing: -0.05em;
 }
 
-.top div, .top i {
-    margin-right: 20px;
-    /* font-size: 0.9em; */
-}
-
-.logo {
+/* Button Styling */
+.btn-outline-dark {
+    border: 1px solid #000;
+    color: #000;
     font-weight: bold;
-    font-size: 1.5em;
-    letter-spacing: 1px;
+    border-radius: 0;
 }
 
-.bottom-section {
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px 20px;
-    gap: 20px;
-    color: white;
-    /* align-items: baseline; */
+.btn-outline-dark:hover {
+    background-color: #000;
+    color: #fff;
 }
 
-a:link, a:visited{
+/* Navbar Alignment */
+input[type="text"] {
+    max-width: 300px;
+    border-radius: 0;
+}
+
+.container > .d-flex > .btn {
+    padding: 0.5em;
+    font-size: 1.2rem;
+}
+
+.title-link {
     text-decoration: none;
-    color: white;
-}
-
-.bottom-section a:hover{
-    text-decoration: underline;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-}
-
-.category_column {
-    flex: 1 0 200px;
-    margin: 10px;
+    color: #000;
 }

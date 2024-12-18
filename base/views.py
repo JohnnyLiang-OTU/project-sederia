@@ -7,12 +7,13 @@ from base.forms import ProductForm, CategoryForm
 from django.urls import reverse
 from django.core.mail import EmailMessage
 from django.conf import settings
-import json, os
+from base.serializers import ProductSerializer
+from rest_framework.viewsets import ModelViewSet
+import json
 # Create your views here.
 
-
 def home(request):
-    product_query = Product.objects.all()
+    product_query = Product.objects.filter(category=2)
     context = {'product_query' : product_query}
     return render(request, 'base/home.html', context)
 
@@ -20,17 +21,22 @@ def about_us(request):
     return render(request, 'base/about_us.html')
 
 def catalogo(request):
-    product_query = Product.objects.all()
-    context = {'product_query' : product_query}
+    product_query = Product.objects.exclude(category = 2)
+    categories_excluding_generic = Category.objects.exclude(id = 2)
+    context = {'product_query' : product_query,
+               'category_query' : categories_excluding_generic}
     return render(request, 'base/catalogo.html', context)
 
 def categorized_catalog(request, category):
     category = Category.objects.get(name__iexact=category)
+    categories_excluding_generic = Category.objects.exclude(id = 2)
     if category:
         product_query = Product.objects.filter(category = category)
     else:
         return HttpResponse("Error 404 - Category No Existe")
-    return render(request, 'base/catalogo.html', {'product_query' : product_query})
+    context = {'product_query' : product_query,
+               'category_query' : categories_excluding_generic}
+    return render(request, 'base/catalogo.html', context)
 
 def filter_products(request, fk):
     query_id = fk
@@ -49,33 +55,42 @@ def producto(request, name):
     product = get_object_or_404(Product, name=name)
     return render(request, 'base/producto.html', {'product':product})
 
+
+import smtplib
+from django.core.mail import EmailMessage, get_connection
 def send_email(request):
-    email_counter = Counter.objects.get(name='email_counter')
-    try:
-        data = json.loads(request.body)
-        name = data.get('name')
-        email = data.get('email')
-        telephone = data.get('telephone')
-        message = data.get('message')
-        body = f"""Nombre: {name}\nEmail: {email}\nTelefono: {telephone}\n\n{message}"""
-        email_message = EmailMessage(
-            "Quote Request #"+email_counter,
-            body,
-            settings.EMAIL_HOST_USER,
-            ["zicrox2@hotmail.com"],
-        )
+    if request.method == 'POST':
+    
+        # Tracks how many emails have been sent
+        current_counter = Counter.objects.get(name='email_counter')
 
-        email_counter.value += 1
-        email_counter.save()
+        try:
+            data = json.loads(request.body)
+            data_string = data.get('data_string')
+            subject = f"Cotizacion #{current_counter}"
+            recipient_list = ["geratechservices@gmail.com"]
+            from_email = "MS_OEhYFV@trial-3z0vklo1zp7g7qrx.mlsender.net"
+            message = data_string
 
-        return JsonResponse({
-            "success": True,
-        })
-    except:
-        return JsonResponse({
-            "success": False,
-        })
-
+            with get_connection(
+                host=settings.EMAIL_HOST,
+                port=settings.EMAIL_PORT,
+                username=settings.MAILERSEND_SMTP_USERNAME,
+                password=settings.MAILERSEND_API_KEY,
+                use_tls=True,
+            ) as connection:
+                r = EmailMessage(
+                    subject=subject,
+                    body=message,
+                    to=recipient_list,
+                    from_email=from_email,
+                    connection=connection).send()
+            return JsonResponse({"status": "ok"})
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+    return JsonResponse({"error":"Method not allowd"}, status=405)
 # <-------- ADMIN STUFF ---------->
 
 @staff_member_required
@@ -174,4 +189,27 @@ def add_category(request):
 def canvas(request):
     return render(request, 'base/canvas.html')
 
-# HELPER FUNCTIONS
+# API Views
+from django.contrib.auth import authenticate
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def login_view(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        username = data.get("username")
+        password = data.get("password")
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            return JsonResponse({
+                "username": user.username,
+                "email": user.email,
+                "is_superuser": user.is_superuser
+            })
+        else:
+            return JsonResponse({"error": "Invalid credentials"}, status=400)
+        
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer

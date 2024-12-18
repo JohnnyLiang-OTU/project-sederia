@@ -2,6 +2,11 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from rest_framework.routers import DefaultRouter
+from base.views import ProductViewSet
+
+post_router = DefaultRouter()
+post_router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -17,6 +22,7 @@ urlpatterns = [
     path('administrador/delete_models/', views.delete_selected_products, name="delete_models"),
     path('administrador/edit/<str:pk>/', views.edit_product, name="edit_product"),
     path('administrador/add_category/', views.add_category, name="add_category"),
+    path('api/login/', views.login_view, name="login_view"),
 ]
 
 if settings.DEBUG:
