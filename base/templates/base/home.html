@@ -50,14 +50,16 @@
     <section class="productos_section">
         <!-- <h1 class="section-title">Productos</h1> -->
         <div class="productos_carousel">
-            {% for product in product_query %}
+            {% for element in home_context %}
             <div class="productos_item">
                 <div class="productos_floating">
-                    <img src="{{product.image.url}}" alt="{{product.name}}">
+                    <a href="{% url 'categorized_catalog' element.name %}">
+                    <img src="{{element.image.url}}" alt="{{product.name}}">
+                    </a>
                 </div>
                 <div class="productos_item_bottom">
                     <div class="productos_info">
-                        <h3>{{product.name}}</h3>
+                        <h3>{{element.name}}</h3>
                         <!-- <p>{{product.description}}</p> -->
                     </div>
                     <div>

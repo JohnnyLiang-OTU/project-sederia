@@ -13,8 +13,8 @@ import json
 # Create your views here.
 
 def home(request):
-    product_query = Product.objects.filter(category=2)
-    context = {'product_query' : product_query}
+    category_query = Category.objects.exclude(image__isnull=True).exclude(image='')
+    context = {'home_context' : category_query}
     return render(request, 'base/home.html', context)
 
 def about_us(request):
