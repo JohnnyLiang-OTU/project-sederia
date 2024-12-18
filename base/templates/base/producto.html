@@ -15,7 +15,7 @@
     <div class="container py-3">
         <div class="d-flex align-items-center">
             <a class="title-link text-decoration-none" href="{% url 'home' %}">
-                <h1 class="mb-0 tracking-tighter font-family-serif fw-bold" style="font-size: 3rem;">Gera Enterprises S.A 
+                <h1 class="mb-0 tracking-tighter font-family-serif fw-bold text-dark" style="font-size: 3rem;">Gera Enterprises S.A 
                 </h1>
             </a>
         </div>
@@ -87,14 +87,15 @@
         </div>
     </div>
 
+    <!--Modal for Contact Form-->
     <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-light">
                     <h5 class="modal-title" id="contactModalLabel">Contact Form</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body bg-light">
                     <!-- Contact Form -->
                     {% include 'contact_form.html' %}
                 </div>
