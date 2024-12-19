@@ -57,6 +57,7 @@ def producto(request, name):
 
 import requests
 from django.core.mail import EmailMessage, get_connection
+# This will only work after paying for PythonAnywhere paid plans.
 def send_email(request):
     if request.method == 'POST':
         form_data = {

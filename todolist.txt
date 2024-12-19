@@ -1,0 +1,5 @@
+1. Redirection to custom "Success" page is only possible with PythonAnywhere paid subscription.
+
+2. Need to Add Products and their images.
+
+Website seems to work well so far, except (point 1). 
