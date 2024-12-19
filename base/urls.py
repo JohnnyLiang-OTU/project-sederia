@@ -23,6 +23,7 @@ urlpatterns = [
     path('administrador/edit/<str:pk>/', views.edit_product, name="edit_product"),
     path('administrador/add_category/', views.add_category, name="add_category"),
     path('api/login/', views.login_view, name="login_view"),
+    path('email-sent/', views.email_sent, name="email_sent"),
 ]
 
 if settings.DEBUG:

@@ -91,6 +91,10 @@ def send_email(request):
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
     return JsonResponse({"error":"Method not allowd"}, status=405)
+
+def email_sent(context):
+    return render(context, 'base/email_thanks.html')
+
 # <-------- ADMIN STUFF ---------->
 
 @staff_member_required

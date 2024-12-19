@@ -1,34 +1,39 @@
 {% load static %}
-<form class="col bg-light" id="contactForm" novalidate>
+<form id="form" class="col bg-light" action="https://api.web3forms.com/submit" method="POST">
     <!-- Name Field -->
+    <input type="hidden" name="access_key" value="a8d2f9da-9ad1-443a-8945-9654de722d47">
     <div class="col-md-auto mb-3">
         <label for="nameFormControlInput" class="form-label text-dark">Nombre</label>
-        <input type="text" class="form-control" id="nameFormControlInput" placeholder="John Doe" required>
+        <input name="name" type="text" class="form-control" id="nameFormControlInput" placeholder="John Doe" required>
         <div class="invalid-feedback">Ingrese su nombre</div>
     </div>
 
     <!-- Email Field -->
     <div class="col-md-auto mb-3">
         <label for="emailFormControlInput" class="form-label text-dark">Correo Electrónico</label>
-        <input type="email" class="form-control" id="emailFormControlInput" placeholder="john.doe@ejemplo.com">
+        <input name="email" type="email" class="form-control" id="emailFormControlInput" placeholder="john.doe@ejemplo.com">
         <div class="invalid-feedback">Ingrese su correo</div>
     </div>
     <!-- Telephone Field -->
     <div class="col-md-auto mb-3">
         <label for="telephoneFormControlInput" class="form-label text-dark">Teléfono / Número Celular</label>
-        <input type="tel" class="form-control" id="telephoneFormControlInput" placeholder="(+507)1234-0000" required>
+        <input name="telephone" type="tel" class="form-control" id="telephoneFormControlInput" placeholder="(+507)1234-0000" required>
         <div class="invalid-feedback">Ingrese su telefono.</div>
     </div>
 
     <!-- Message Field -->
     <div class="col-md-auto mb-3">
         <label for="msgFormControlInput" class="form-label text-dark">Mensaje</label>
-        <textarea class="form-control" id="msgFormControlInput" rows="4"
+        <textarea name="message" class="form-control" id="msgFormControlInput" rows="4"
             placeholder="Escribe tu mensaje aquí..."></textarea>
     </div>
+
+    <!-- MISC Fields -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    <input type="hidden" name="redirect" value="{% url 'email_sent' %}">
+
+
     <!-- Submit Button -->
-    <div class="text-center mb-3">
-        <button id="contact_form_button" type="button" class="btn btn-dark btn-lg">Enviar Mensaje</button>
-    </div>
+    <button type="submit" class="text-center mb-3 btn btn-dark btn-lg">Submit Form</button>
 </form>
 <script type="module" src="{% static 'js/contact_form.js' %}"></script>
