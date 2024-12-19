@@ -55,42 +55,29 @@ def producto(request, name):
     product = get_object_or_404(Product, name=name)
     return render(request, 'base/producto.html', {'product':product})
 
-
-import smtplib
+import requests
 from django.core.mail import EmailMessage, get_connection
 def send_email(request):
     if request.method == 'POST':
-    
-        # Tracks how many emails have been sent
-        current_counter = Counter.objects.get(name='email_counter')
+        form_data = {
+            'access_key': 'a8d2f9da-9ad1-443a-8945-9654de722d47',
+            'name': request.POST.get('name'),
+            'email': request.POST.get('email'),
+            'telephone': request.POST.get('telephone'),
+            'message': request.POST.get('message'),
+            'redirect': 'https://geratechservices.pythonanywhere.com/email-sent/'
+        }
 
-        try:
-            data = json.loads(request.body)
-            data_string = data.get('data_string')
-            subject = f"Cotizacion #{current_counter}"
-            recipient_list = ["geratechservices@gmail.com"]
-            from_email = "MS_OEhYFV@trial-3z0vklo1zp7g7qrx.mlsender.net"
-            message = data_string
+        # Send the form data to Web3Forms API
+        api_url = 'https://api.web3forms.com/submit'
+        response = requests.post(api_url, data=form_data)
 
-            with get_connection(
-                host=settings.EMAIL_HOST,
-                port=settings.EMAIL_PORT,
-                username=settings.MAILERSEND_SMTP_USERNAME,
-                password=settings.MAILERSEND_API_KEY,
-                use_tls=True,
-            ) as connection:
-                r = EmailMessage(
-                    subject=subject,
-                    body=message,
-                    to=recipient_list,
-                    from_email=from_email,
-                    connection=connection).send()
-            return JsonResponse({"status": "ok"})
-        except json.JSONDecodeError:
-            return JsonResponse({"error": "Invalid JSON"}, status=400)
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
-    return JsonResponse({"error":"Method not allowd"}, status=405)
+        if response.status_code == 200:
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'message': response.text})
+
+    return JsonResponse({'success': False, 'message': 'Invalid request'})
 
 def email_sent(context):
     return render(context, 'base/email_thanks.html')
