@@ -11,14 +11,14 @@
 <div id="root">
     <script type="module" src="{% static 'js/home.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <section class="hero_section bg-dark text-white min-vh-100 d-flex justify-content-center align-items-center py-5">
+    <section class="hero_section bg-light text-dark min-vh-100 d-flex justify-content-center align-items-center py-5">
         <div class="hero_container text-center">
-            <img class="hero_logo img-fluid bg-dark" src="{% static 'images/logo_transparent.png' %}" alt="Hero Logo">
+            <img class="hero_logo img-fluid bg-light" src="{% static 'images/logo_transparent.png' %}" alt="Hero Logo">
             <div>
-                <a href="#contact-section" class="btn btn-outline-primary btn-xl me-3 fs-2">
+                <a href="#contact-section" class="btn btn-outline-primary btn-xl me-3 fw-bold fs-2">
                     Cotiza con Nosotros
                 </a>
-                <a href="{% url 'catalogo' %}" class="btn btn-outline-light btn-xl fs-2">
+                <a href="{% url 'catalogo' %}" class="btn btn-outline-dark btn-xl fw-bold fs-2">
                     Ver Productos
                 </a>
             </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="productos_item_bottom">
                     <div class="productos_info">
-                        <h3>{{element.name}} {{element.image.url}}</h3>
+                        <h3>{{element.name}}</h3>
                         <!-- <p>{{product.description}}</p> -->
                     </div>
                     <div>
