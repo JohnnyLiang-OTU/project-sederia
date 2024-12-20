@@ -20,13 +20,17 @@
             <div class="col">
                 <div class="card h-100 bg-dark text-light">
                     <!-- Card Image -->
-                    <div class="card_image_container">
+                    <div class="card_image_container bg-white" style="position: relative; height: 200px; overflow: hidden;">
                         {% if product.image %}
-                            <img src="{{ product.image.url }}" alt="Render Problem" class="card-img-top">
-                        {% else %}
                             <a href="{% url 'producto' product.name %}">
-                                <img src="{% static 'images/default_image.jpg' %}" alt="default_image" class="card-img-top">
+                                <img src="{{ product.image.url }}" alt="{{ product.image.name }}" 
+                                     class="card-img-top w-100 h-100" 
+                                     style="object-fit: scale-down;">
                             </a>
+                        {% else %}
+                            <img src="{% static 'images/default_image.jpg' %}" alt="default_image" 
+                                 class="card-img-top w-100 h-100" 
+                                 style="object-fit: cover;">
                         {% endif %}
                     </div>
                     
@@ -42,6 +46,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         {% endfor %}
     </div>
